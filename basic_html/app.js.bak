@@ -1,0 +1,119 @@
+$( document ).ready(function() 
+{
+    for(var i=0;i<20;i++)
+    {
+    $("#content_list").append('<li class="title_list_element"><span class="title">Title</span></li>');
+    }
+    $("#sub_content").addClass("hidden");
+    $("#details_holder").toggleClass("hidden");
+    $("#content_list_holder").toggleClass("hidden");
+    $(".menu_element").click(function () {
+      switch(this.id)
+      {
+        case "music":
+          if($("#sub_content").hasClass("hidden"))
+          {
+            $("#sub_content").removeClass("hidden");
+            $("#details_holder").removeClass("hidden");
+            $("#content_list_holder").removeClass("hidden");
+            $("#search").addClass("hidden");
+          }
+          else
+          {
+            if ($("#search").hasClass("hidden"))
+            {
+              $("#sub_content").addClass("hidden");
+              $("#details_holder").addClass("hidden");
+              $("#content_list_holder").addClass("hidden");
+            }
+            else if(!$("#content_list_holder").hasClass("hidden"))
+            {
+              break;
+              /*change type here*/
+            }
+            else
+            {
+                $("#search").addClass("hidden");
+                $("#details_holder").removeClass("hidden");
+                $("#content_list_holder").removeClass("hidden");
+            }
+          }
+          break;
+        case "movie":
+          if($("#sub_content").hasClass("hidden"))
+          {
+            $("#sub_content").removeClass("hidden");
+            $("#details_holder").removeClass("hidden");
+            $("#content_list_holder").removeClass("hidden");
+            $("#search").addClass("hidden");
+          }
+          else
+          {
+            if ($("#search").hasClass("hidden"))
+            {
+              $("#sub_content").addClass("hidden");
+              $("#details_holder").addClass("hidden");
+              $("#content_list_holder").addClass("hidden");
+            }
+            else if(!$("#content_list_holder").hasClass("hidden"))
+            {
+              break;
+              /*change type here*/
+            }
+            else
+            {
+                $("#search").addClass("hidden");
+                $("#details_holder").removeClass("hidden");
+                $("#content_list_holder").removeClass("hidden");
+            }
+          }
+          break;
+        case "download":
+          if($("#sub_content").hasClass("hidden"))
+          {
+            $("#sub_content").removeClass("hidden");
+            $("#search").removeClass("hidden");
+            $("#details_holder").addClass("hidden");
+            $("#content_list_holder").addClass("hidden");
+          }
+          else
+          {
+            if ($("#search").hasClass("hidden"))
+            {
+              $("#search").removeClass("hidden");
+              
+            }
+            else if(!$("#content_list_holder").hasClass("hidden"))
+            {
+              $("#search").addClass("hidden");
+              $("#details_holder").removeClass("hidden");
+              $("#content_list_holder").removeClass("hidden");
+            }
+            else
+            {
+                $("#search").addClass("hidden");
+                $("#sub_content").addClass("hidden");
+            }
+          }
+          break;
+        case "settings":
+          
+          break;
+        case "keyboard_toggle":
+          $("#menu").toggleClass("resize");
+          $("#keyboard").toggleClass("hidden");
+          $(".menu_element").toggleClass("hidden");
+          $("#keyboard_toggle").removeClass("hidden");
+          break;
+        default:
+          break;
+      }
+    });
+    
+    $('#search_form input[type="text"]').click(function () {
+      $("#menu").toggleClass("resize");
+      $("#keyboard").toggleClass("hidden");
+      $(".menu_element").toggleClass("hidden");
+      $("#keyboard_toggle").removeClass("hidden");
+    });
+});

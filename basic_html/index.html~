@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>3.14Remote</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="jquery-2.1.1.min.js"></script>
+  <script src="quo.js"></script>
+  <script src="app.js"></script>
+</head>
+<body>
+<div id="content">
+  <div id="sub_content">
+    <div id="details_holder"></div>
+    <div id="content_list_holder">
+      <ul id="content_list">
+      </ul>
+    </div>
+    <div id="menu">
+      <span id="menu_element" class="music">Music</span>
+      <span id="menu_element" class="movie">Movie</span>
+      <span id="menu_element" class="download">Download</span>
+      <span id="menu_element" class="settings">Settings</span>
+      <span id="menu_element" class="keyboard_toggle">Keyboard</span>
+    </div>
+    <div id="keyboard" class="hidden">
+    </div>
+  </div>
+</div>
+</body>
+</html>
+

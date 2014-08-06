@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>3.14Remote</title>
+  <link rel="stylesheet" type="text/css" href="index_style.css">
+  <link rel="stylesheet" type="text/css" href="keyboard_style.css">
+  <script src="jquery-2.1.1.min.js"></script>
+  <script src="quo.js"></script>
+  <script src="keyboard.js"></script>
+  <script src="app.js"></script>
+</head>
+<body>
+<div id="content">
+  <div id="sub_content">
+    <div id="search">
+      <form id="search_form">
+        <input type="text" name="search_field">
+        <input type="submit" value="Search">
+      </form>
+      <div id="search_result">
+        <span id="result"></span>
+        <form id="result_acceptor">
+          <input type="submit" value="Accept Result">
+        </form>
+      </div>
+    </div>
+    <div id="details_holder"></div>
+    <div id="content_list_holder">
+      <ul id="content_list">
+      </ul>
+    </div>
+  </div>
+    <div id="menu">
+      <span class="menu_element" id="music">Music</span>
+      <span class="menu_element" id="movie">Movie</span>
+      <span class="menu_element" id="download">Download</span>
+      <span class="menu_element" id="settings">Settings</span>
+    </div>
+    <div id="keyboard" class="hidden">
+      <div id="container">
+        <ul id="keyboard">
+          <li class="symbol"><span class="off">`</span><span class="on">~</span></li>
+          <li class="symbol"><span class="off">1</span><span class="on">!</span></li>
+          <li class="symbol"><span class="off">2</span><span class="on">@</span></li>
+          <li class="symbol"><span class="off">3</span><span class="on">#</span></li>
+          <li class="symbol"><span class="off">4</span><span class="on">$</span></li>
+          <li class="symbol"><span class="off">5</span><span class="on">%</span></li>
+          <li class="symbol"><span class="off">6</span><span class="on">^</span></li>
+          <li class="symbol"><span class="off">7</span><span class="on">&amp;</span></li>
+          <li class="symbol"><span class="off">8</span><span class="on">*</span></li>
+          <li class="symbol"><span class="off">9</span><span class="on">(</span></li>
+          <li class="symbol"><span class="off">0</span><span class="on">)</span></li>
+          <li class="symbol"><span class="off">-</span><span class="on">_</span></li>
+          <li class="symbol"><span class="off">=</span><span class="on">+</span></li>
+          <li class="delete lastitem">delete</li>
+          <li class="tab">tab</li>
+          <li class="letter">q</li>
+          <li class="letter">w</li>
+          <li class="letter">e</li>
+          <li class="letter">r</li>
+          <li class="letter">t</li>
+          <li class="letter">y</li>
+          <li class="letter">u</li>
+          <li class="letter">i</li>
+          <li class="letter">o</li>
+          <li class="letter">p</li>
+          <li class="symbol"><span class="off">[</span><span class="on">{</span></li>
+          <li class="symbol"><span class="off">]</span><span class="on">}</span></li>
+          <li class="symbol lastitem"><span class="off">\</span><span class="on">|</span></li>
+          <li class="capslock">caps lock</li>
+          <li class="letter">a</li>
+          <li class="letter">s</li>
+          <li class="letter">d</li>
+          <li class="letter">f</li>
+          <li class="letter">g</li>
+          <li class="letter">h</li>
+          <li class="letter">j</li>
+          <li class="letter">k</li>
+          <li class="letter">l</li>
+          <li class="symbol"><span class="off">;</span><span class="on">:</span></li>
+          <li class="symbol"><span class="off">'</span><span class="on">&quot;</span></li>
+          <li class="return lastitem">return</li>
+          <li class="left-shift">shift</li>
+          <li class="letter">z</li>
+          <li class="letter">x</li>
+          <li class="letter">c</li>
+          <li class="letter">v</li>
+          <li class="letter">b</li>
+          <li class="letter">n</li>
+          <li class="letter">m</li>
+          <li class="symbol"><span class="off">,</span><span class="on">&lt;</span></li>
+          <li class="symbol"><span class="off">.</span><span class="on">&gt;</span></li>
+          <li class="symbol"><span class="off">/</span><span class="on">?</span></li>
+          <li class="right-shift lastitem">shift</li>
+          <li class="space lastitem">&nbsp;</li>
+        </ul>
+      </div>
+    </div>
+</div>
+</body>
+</html>
+
