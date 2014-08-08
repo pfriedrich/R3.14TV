@@ -61,6 +61,7 @@ function toggleMovies()
     else
     {
       removeMovies();
+      $('#detail').remove();
     }
 }
 
