@@ -40,6 +40,8 @@ function toggleMovies()
     {
       addMovies(page_data.movie);
       $('li.title_list_element').click(function () {
+        $(this).animate({fontSize: '40px'}, 500, 'linear').animate({fontSize: '20px'}, 500, 'linear');
+        $('#detail').remove();
         var title=this.innerText;
         var image=$(this)[0].firstChild.src;
         /*get data from db, using title as key*/
@@ -53,8 +55,8 @@ function toggleMovies()
                                       '<div id="plot">'+plot+'</div>'+
                                       '<div id="actor_header">Actors:</div>'+
                                       '<div id="actor">'+actors+'</div>'+
-                                      '<div id="genre">'+genre+'</div>'+
-                                      '<div id="l">length:'+length+'</div>'+
+                                      '<div id="genre">Genre: '+genre+'</div>'+
+                                      '<div id="l">length :'+length+'</div>'+
                                     '</div>');
       });
     }
