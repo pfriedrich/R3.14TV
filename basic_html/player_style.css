@@ -14,7 +14,7 @@ body
 
 #container_button
 {
-  padding-top: 200px;
+  padding-top: 50px;
 }
 
 #play_container {
@@ -36,7 +36,7 @@ body
   height: 150px;
   margin-left: auto;
   margin-right: auto;
-  top: 55px;
+  top: 35px;
   position: relative;
   -webkit-border-radius: 155px;
   -moz-border-radius: 155px;
@@ -160,6 +160,9 @@ body
   height: 130px;
   color: #22a9db;
   cursor: pointer;
+  -webkit-transition: all .2s;
+  -moz-transition: all .2s;
+  transition: all .2s;
 }
 
 #icon.play_pause
@@ -292,4 +295,27 @@ progress::-webkit-progress-value {
   background: linear-gradient(to bottom,  #22a9db 0%,#0834C4 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#22a9db', endColorstr='#0834C4',GradientType=0 );
   border-radius: 9px;
+}
+
+#elapsed_time
+{
+  width: auto;
+  color: #ffffff;
+  padding-left: 100px;
+}
+
+#title
+{
+  color: #ffffff;
+  background-color:rgba(100,130,180,0.8);
+  font-weight: bold;
+  font-size: 46px;
+  width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: inset 0px 1px 0px #a8a8a8, 0px 1px 0px #2a2a2a, 0px 2px 0px #2a2a2a, 0px 3px 0px #2a2a2a, 0px 2px 0px #2a2a2a, 0px 3px 0px #2a2a2a, 0px 3px 0px #2a2a2a, 0px 3px 0px #2a2a2a, 0px 4px 0px #2a2a2a, 0px 5px 0px #2a2a2a, 5px 10px 5px #000;
 }
