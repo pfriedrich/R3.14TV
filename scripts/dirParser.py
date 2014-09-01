@@ -31,38 +31,37 @@ def webParser(title_to_search):
   try:
     data.title = tree.xpath('//span[@itemprop="name"]')[0].text.strip()
   except IndexError:
-    pass
+    data.title = "-"
   
   try:
     data.img = tree.xpath('//img[@itemprop="image"]')[0].values()[-2]
   except IndexError:
-    pass
+    data.img = "http://www.thatpetplace.com/c.1043140/site/img/photo_na.jpg"
   
   try:
     data.director = tree.xpath('//div[@itemprop="director"]//span[@itemprop="name"]')[0].text.strip()
   except IndexError:
-    pass
+    data.director = "-"
   
   try:
     data.actors = ", ".join(map(lambda x: x.text,tree.xpath('//div[@itemprop="actors"]//span[@itemprop="name"]')))
   except IndexError:
-    pass
+    data.actors = "-"
   
   try:
     data.genre = ", ".join(map(lambda x: x.text.strip(),tree.xpath('//span[@itemprop="genre"]')))
   except IndexError:
-    pass
+    data.genre = "-"
   
   try:
     data.plot = tree.xpath('//p[@itemprop="description"]')[0].text.strip()
   except IndexError:
-    pass 
+    data.plot = "-" 
   
   try:
     data.length = tree.xpath('//time[@itemprop="duration"]')[0].text.strip().split()[0]
   except IndexError:
-    pass 
-  
+    data.length = "-" 
   return data
 
 
@@ -79,6 +78,7 @@ def dirParser(directory, results):
   
   
 def main():
+  db_name="movie_db.txt"
   results = []
   path = sys.argv[1]
   orig_dir=os.getcwd()
@@ -98,32 +98,39 @@ def main():
         results.append(act_dir)
   results.sort()
   os.chdir(orig_dir)
-  db_file=open("movie_db.txt","w")
-  for id,path in enumerate(results):
-    title=path.split("/")[-2].replace("."," ")
-    #title=" ".join(path.split("/")[-1].split(".")[0:-1])
-    match_obj=series_rule.match(title)
-    if (match_obj!=None):
-      title=title[0:match_obj.end()-6]+title[match_obj.end()-6:match_obj.end()-3].replace("s","season ")+title[match_obj.end()-3:match_obj.end()].replace("e"," episode ")
-    match_obj=date_rule.match(title)
-    if (match_obj!=None):
-      title=title[0:match_obj.end()-4]
-    match_obj=date_rule2.match(title)
-    if (match_obj!=None):
-      title=title[0:match_obj.end()-4]
-    match_obj=bracket_rule.match(title)
-    if (match_obj!=None):
-      title=title[match_obj.end():-1]
-    data=webParser(title.strip())
-    data.path=path
-    data.title=title
-    db_file.write("id:"+str(id)+"|"+str(data))
-    db_file.write("\n")
-#writing results is wrong, use iteritems instead, open file before for cicle
-#need more regexp to filter out things like [], www, xyRip, etc
-  db_file.close()
-    
+  if (os.path.isfile(db_name)):
+    db_file=open(db_name,'r')
+    db_content=db_file.read()
+    results=filter(lambda x: db_content.find(x)==-1,results)
+    db_file.close()
+  if (len(results)>0):
+    db_file=open(db_name,"w")
+    for id,path in enumerate(results):
+      title=path.split("/")[-2].replace("."," ")
+      #title=" ".join(path.split("/")[-1].split(".")[0:-1])
+      match_obj=series_rule.match(title)
+      if (match_obj!=None):
+        title=title[0:match_obj.end()-6]+title[match_obj.end()-6:match_obj.end()-3].lower().replace("s","season ")+title[match_obj.end()-3:match_obj.end()].lower().replace("e"," episode ")
+      match_obj=date_rule.match(title)
+      if (match_obj!=None):
+        title=title[0:match_obj.end()-4]
+      match_obj=date_rule2.match(title)
+      if (match_obj!=None):
+        title=title[0:match_obj.end()-4]
+      match_obj=bracket_rule.match(title)
+      if (match_obj!=None):
+        title=title[match_obj.end():-1]
+      data=webParser(title.strip())
+      data.path=path
+      data.title=title
+      db_file.write("id:"+str(id)+"|"+str(data))
+      db_file.write("\n")
+  #writing results is wrong, use iteritems instead, open file before for cicle
+  #need more regexp to filter out things like [], www, xyRip, etc
+    db_file.close()
+      
   
   
 if __name__ == "__main__":
+    print "parsing ...\n"
     main()

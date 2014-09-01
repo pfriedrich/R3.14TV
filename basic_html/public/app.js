@@ -1,14 +1,5 @@
 var page_data={music: new Array(), movie: new Array()};
-var film_instance={title:"Edge of tomorrow",
-                    image:"http://ia.media-imdb.com/images/M/MV5BMTY5MjEzNjY3NV5BMl5BanBnXkFtZTgwODgzMjAwMjE@._V1_SX214_AL_.jpg",
-                    director: "Doug Liman",
-                    plot:"An officer finds himself caught in a time loop in a war with an alien race. His skills increase as he faces the same brutal combat scenarios, and his union with a Special Forces warrior gets him closer and closer to defeating the enemy.",
-                    actors: new Array("Tom Cruise", "Emily Blunt", "Bill Paxton"),
-                    genre: "sci-fi",
-                    length: 113,
-                    path: "notset",
-                    subtitle_path: "notset"
-};
+
 
 function toggleSubContent()
 {
@@ -25,7 +16,7 @@ function addMovies(data_source)
   }
   for(var i=0;i<data_source.length;i++)
   {
-    $("ul#content_list").append('<li class="title_list_element"><img src='+data_source[i].image+'><span class="title">'+data_source[i].title+'</span></li>');
+    $("ul#content_list").append('<div class="li_element_holder"><li class="title_list_element"><img src='+data_source[i].img+'><span class="title">'+data_source[i].title+'</span></div></li>');
   }
 }
 
@@ -40,24 +31,37 @@ function toggleMovies()
     {
       addMovies(page_data.movie);
       $('li.title_list_element').click(function () {
-        $(this).animate({fontSize: '40px'}, 500, 'linear').animate({fontSize: '20px'}, 500, 'linear');
+        $(this).animate({zoom: 2}, 500, 'linear').animate({zoom: 1}, 500, 'linear');
         $('#detail').remove();
         var title=this.innerText;
         var image=$(this)[0].firstChild.src;
-        /*get data from db, using title as key*/
-        var plot=film_instance.plot;
-        var genre=film_instance.genre;
-        var length=film_instance.length;
-        var actors=film_instance.actors.join(", ");
-        $('#details_holder').append('<div id="detail">'+
-                                      '<img id="img" src='+image+'>'+
-                                      '<div id="detail_title">'+title+'</div>'+
-                                      '<div id="plot">'+plot+'</div>'+
-                                      '<div id="actor_header">Actors:</div>'+
-                                      '<div id="actor">'+actors+'</div>'+
-                                      '<div id="genre">Genre: '+genre+'</div>'+
-                                      '<div id="l">length :'+length+'</div>'+
-                                    '</div>');
+        var film_instance="-";
+        for(var i=0;i<page_data.movie.length;i++)
+        {
+          if (title==page_data.movie[i]["title"])
+          {
+            film_instance=page_data.movie[i];
+            var plot=film_instance["plot"];
+            var genre=film_instance["genre"];
+            var length=film_instance["length"];
+            var director= film_instance["director"];
+            var actors=film_instance["actors"];
+            $('#details_holder').append('<div id="detail">'+
+                                          '<img id="img" src='+image+'>'+
+                                          '<div id="detail_title">'+title+'</div>'+
+                                          '<div id="plot">'+plot+'</div>'+
+                                          '<div id="sub_info">'+
+                                          '<div id="director_header">Director:</div>'+
+                                          '<div id="director">'+director+'</div>'+
+                                          '<div id="actor_header">Actors:</div>'+
+                                          '<div id="actor">'+actors+'</div>'+
+                                          '<div id="genre">Genre: '+genre+'</div>'+
+                                          '<div id="l">Length: '+length+" mins"+'</div>'+
+                                          '</div>'+
+                                          '</div>'
+                                          );
+          }
+        }
       });
     }
     else
@@ -69,8 +73,26 @@ function toggleMovies()
 
 $( document ).ready(function() 
 {
-    page_data.movie.push(film_instance);
-    page_data.movie.push(film_instance);
+  
+    /*var mysql      = require('mysql');
+    var connection = mysql.createConnection({
+      host     : 'localhost',
+      user     : 'me',
+      password : 'secret'
+    });
+
+    connection.connect();*/
+
+    var socket = io.connect('http://localhost:8080');
+    socket.on('connect', function(data){
+      socket.emit('remote_loading');
+    });
+    socket.on('movie_entry', function(data) {
+      console.log(data.data);
+      page_data.movie.push(data.data);
+    });
+    
+    //page_data.movie.push(film_instance);
     //for(var i=0;i<20;i++)
     //{
     //$("#content_list").append('<li class="title_list_element"><span class="title">Title</span></li>');

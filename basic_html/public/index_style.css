@@ -20,7 +20,7 @@ html,body{
   margin-top: 10px;
   margin-bottom: 10px;
   width: 0px;
-  height: 464px;
+  height: 500px;
   transition: width 0.5s ease-in-out;
   overflow: hidden;
   white-space: nowrap;
@@ -130,7 +130,7 @@ html,body{
 {
   display: inline-block;
   width: 400px;
-  height: 400px;
+  height: 450px;
   border:    5px solid black;
   border-radius: 5px;
   overflow-y:scroll;
@@ -141,7 +141,7 @@ html,body{
 {
   display: inline-block;
   width: 600px;
-  height: 400px;
+  height: 450px;
   border:    5px solid black;
   border-radius: 5px;
   transition: width 1s ease-in-out;
@@ -217,15 +217,26 @@ html,body{
   padding-right: 15px;
 }
 
+ul
+{
+  padding-left: 5px;
+}
+
 li.title_list_element
 {
-  margin: 20px;
+  margin: 10px;
   border-style: solid;
   border-width: 5px;
   border-color: #152020;
   border-radius: 5px;
   background: #152020;
+  display: inline-block;
+
 }
+
+.li_element_holder
+{
+  display:block;}
 
 .title_list_element img
 {
@@ -237,7 +248,7 @@ li.title_list_element
 span.title
 {
   padding-left: 15px;
-  font-size: 20px;
+  font-size: 15px;
 }
 
 #img
@@ -248,6 +259,7 @@ span.title
   padding-left: 15px;
   padding-right: 15px;
   padding-top: 20px;
+  padding-bottom: 0px;
 }
 
 #detail_title
@@ -256,15 +268,25 @@ span.title
   font-size: 36px;
   vertical-align: top;
   padding-top: 20px;
+  white-space: normal;
+  width: 400px;
+  text-shadow: 4px 4px 2px rgba(10, 10, 10, 1);
 }
 
 #plot
 {
   padding-top: 20px;
+  padding-right: 5px;
   width: 600px;
   min-height: 200px;
   word-wrap: break-word;
   white-space: normal;
+}
+
+#sub_info
+{
+  position: absolute;
+  bottom: 40px;
 }
 
 #actor_header
@@ -274,9 +296,27 @@ span.title
   padding-right: 15px;
   font-weight:bold;
   font-size: 26px;
+  text-shadow: 4px 4px 2px rgba(10, 10, 10, 1);
 }
 
 #actor
+{
+  padding-left: 20px;
+  padding-right: 15px;
+  margin-bottom: 20px
+}
+
+#director_header
+{
+  overflow: hidden;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-weight:bold;
+  font-size: 26px;
+  text-shadow: 4px 4px 2px rgba(10, 10, 10, 1);
+}
+
+#director
 {
   padding-left: 20px;
   padding-right: 15px;
